@@ -18,6 +18,7 @@ public class DataBase {
     ArrayList <Activity> listOfActivities = null;
     ArrayList <Animator> listOfAnimators = null;
     
+    //jfiosjiojfsaiojfsaoifsjaoifsajoifsaj
     public DataBase(){
         listOfMembers = new ArrayList<>();
         listOfInscriptions = new ArrayList<>();
