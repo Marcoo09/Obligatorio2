@@ -9,18 +9,21 @@ public class Inscription {
     private Member member;
     private Activity activity;
     private int pickUpTime;
+    private long contactNumber;
 
     //Constructor
-    public Inscription(Member member, Activity activity, int pickUpTime) {
+    public Inscription(Member member, Activity activity, int pickUpTime, long contactNumber) {
         this.member = member;
         this.activity = activity;
         this.pickUpTime = pickUpTime;
+        this.contactNumber = contactNumber;
+        int memberDni = member.getDni();
+        Person.PersonContact.put(memberDni, contactNumber);
     }
 
     //Setter Methods
     public void setPickUpTime(int pickUpTime) {
         this.pickUpTime = pickUpTime;
-
     }
 
     public void setMember(Member aMember) {
@@ -29,6 +32,10 @@ public class Inscription {
 
     public void setActivity(Activity aActivity) {
         this.activity = aActivity;
+    }
+
+    public void setContactNumber(long contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
     //Getter Methods
@@ -44,30 +51,7 @@ public class Inscription {
         return this.activity;
     }
 
-    //This method check if the inscription is early
-    private boolean isAnEarlyInscription() {
-        return (this.getPickUpTime() < (this.getActivity().getStartHour() - 3) || this.getPickUpTime() > (this.getActivity().getStartHour()));
-    }
-
-    //This method show the inscriptions in order of the pick up time
-    public String showOrderedInscriptions(Inscription inscription2) {
-        String listReturned = "\n<--------Las inscripciones son-------->\n";
-        if (this.getPickUpTime() <= inscription2.getPickUpTime()) {
-            listReturned += this.toString() + inscription2;
-        } else {
-            listReturned += inscription2 + this.toString();
-        }
-        return listReturned;
-    }
-
-    @Override
-    public String toString() {
-        String isEarly;
-        if (this.isAnEarlyInscription()) {
-            isEarly = "Es una inscripción TEMPRANA";
-        } else {
-            isEarly = "NO es una inscripción TEMPRANA";
-        }
-        return "\nEl miembro inscrito es: " + this.getMember().getName() + "\nLa actividad es de tipo: " + this.getActivity().getTypeString() + "\nLa hora de pasarlo a buscar es: " + this.getPickUpTime() + "\n" + "(" + isEarly + ")" + "\n";
+    public long getContactNumber() {
+        return contactNumber;
     }
 }

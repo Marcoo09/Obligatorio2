@@ -3,50 +3,36 @@ package obligatorio2;
 /*
  * @author Marco Fiorito and Felipe Najson
  */
-public class Member extends Person{
+public class Member extends Person implements Comparable {
 
-    private int age;
     private String address;
-    private long contactNumber;
 
     //Constructor
-    public Member(String name, int age, int dni, String adress, long contactNumber) {
+    public Member(String name, int age, int dni, String address) {
         this.setName(name);
-        this.age = age;
+        this.setAge(age);
         this.setDni(dni);
-        this.address = adress;
-        this.contactNumber = contactNumber;
+        this.address = address;
+        Person.PersonContact.put(dni, Long.MIN_VALUE);
     }
 
     //Setter Methdos
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-    public void setAdress(String adress) {
-        this.address = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setContactNumber(long contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
-    //Getter Methdos
-    public int getAge() {
-        return this.age;
-    }
-    
+    //Getter Methods
     public String getAddress() {
         return this.address;
     }
 
-    public long getContactNumber() {
-        return this.contactNumber;
+    @Override
+    public String toString() {
+        return super.toString() + "\nSu dirección es: " + this.getAddress() + "\n";
     }
 
     @Override
-
-    public String toString() {
-        return "\nEl miembro es " + this.getName() + "\nEdad: " + this.getAge() + "\nDNI: " + this.getDni() + "\nAddress: " + this.getAddress() + "\nNumero de contacto: " + this.getContactNumber();
+    public int compareTo(Object o) {
+        return this.getName().compareToIgnoreCase(((Member) o).getName());
     }
 }

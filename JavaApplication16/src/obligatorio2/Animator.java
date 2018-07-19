@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package obligatorio2;
 
 /**
@@ -10,19 +5,29 @@ package obligatorio2;
  * @author Marco Fiorito and Felipe Najson
  */
 public class Animator extends Person {
-    int yearsOfExperience;
+
+    private int yearsOfExperience;
+
+    //Constructor
+    public Animator(String name, int age, int dni, int yearsOfExperience) {
+        this.setName(name);
+        this.setAge(age);
+        this.setDni(dni);
+        this.yearsOfExperience = yearsOfExperience;
+    }
 
     //Getter Methods
     public int getYearsOfExperience() {
         return yearsOfExperience;
     }
-    
-    //Setter Methos
+
+    //Setter Methods
     public void setYearsOfExperience(int yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
     }
-   @Override
-    public String toString(){
-        return "El nombre del animador es: " + this.getName() + "\nY su DNI es: " + this.getDni() + "\nY tiene " + this.getYearsOfExperience() + " de experiencia";
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nY tiene " + this.getYearsOfExperience() + " año de experiencia\n";
     }
 }
